@@ -1,9 +1,13 @@
 <?php
+/**
+* @version 0.0.1
+*/
 
 /*
 Ideas:
 - casting or not the values
 */
+//use RCC\TypeValidator;
 
 class TypeValidator{
 	
@@ -16,6 +20,7 @@ class TypeValidator{
 	log:
 	0 - no log (development)
 	1 - log in file (production)
+	2 - log in file and backtrace
 	
 	log_deep_level: 
 	0 - no backtrace
@@ -66,7 +71,7 @@ class TypeValidator{
 		
 		if($config['check_level']>0){			
 			foreach($types as $type_key=>$type_val){				
-				if($type_val && count($args)>=$type_key && isset($args[$type_key])){
+				if($type_val && count($args)>$type_key && isset($args[$type_key])){
 					$arg_type = getType($args[$type_key]); // toLower ?	
 					
 					// both primitives
